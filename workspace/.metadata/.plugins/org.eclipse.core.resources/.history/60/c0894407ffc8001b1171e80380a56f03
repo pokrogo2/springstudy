@@ -1,0 +1,18 @@
+package quiz03;
+
+import java.util.Map;
+
+public class Student {
+	private String name;
+	private int age;
+	private Map<String, String>home;
+	private Exam exam;
+	
+	public void info() {
+		System.out.println("name : " + name);
+		System.out.println("age : " + age);
+		for(Map.Entry<String, String> entry : home.entrySet()) {
+			System.out.println("home's" + entry.getKey()+":" +entry.getValue());
+		}
+	}
+}
