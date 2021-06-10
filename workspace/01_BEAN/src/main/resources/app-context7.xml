@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+
+<!-- publisher -->
+	<bean id ="publisher1" class="ex07_java_into_xml.Publisher">
+		<constructor-arg>
+			<value>자바출판사</value>
+		</constructor-arg>
+		<constructor-arg><value>위치</value></constructor-arg>
+		
+		
+		
+	</bean>
+	
+	<!-- book -->
+	
+	<bean id="book1" class="ex07_java_into_xml.Book">
+	
+		<property name="title" value="나는 자바"/>
+		<property name="price" value="20000"/>
+		<property name="publisher" ref="publisher1"/>
+	
+	</bean>
+	<!-- AppContext에서 생성한 bean가져오기 -->
+	
+	<!-- 
+		AppContext.java는 annotation(@Configuration,@Bean)을 이용해서 bean생성하므로
+		<context : annotation-config/>추가
+		Namespaces 탭에서 context선택
+		
+		<bean class="AppContext/>
+	 -->
+	<context:annotation-config/>
+	<bean class="ex07_java_into_xml.AppContext"/>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</beans>
