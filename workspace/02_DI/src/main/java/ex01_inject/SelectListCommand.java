@@ -1,6 +1,7 @@
 package ex01_inject;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 /*
  * @Inject
  * 객체의 타입(<bean class=">) 일치하는 객체 자동주입
@@ -25,6 +26,7 @@ public class SelectListCommand {
 	//3. setter
 	private Dao dao;
 	@Inject
+	@Named("dao1") //bean의 id입력
 	public void setDao(Dao dao) {
 		this.dao = dao;
 	}
