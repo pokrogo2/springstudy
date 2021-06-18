@@ -16,7 +16,7 @@ import com.koreait.board02.command.SelectBoardViewCommand;
 import com.koreait.board02.command.UpdateBoardCommand;
 import com.koreait.board02.dto.Board;
 
-// @Controller
+//@Controller
 public class BoardController {
 
 	// field
@@ -94,5 +94,6 @@ public class BoardController {
 		insertBoardCommand.execute(model);
 		return "redirect:selectBoardList.do";
 	}
+	
 	
 }
