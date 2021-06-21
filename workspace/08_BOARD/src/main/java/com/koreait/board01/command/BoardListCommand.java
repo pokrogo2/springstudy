@@ -9,7 +9,7 @@ public class BoardListCommand implements BoardCommand {
 	@Override
 	public void execute(Model model) {
 		
-		// Model : JSP에게 값을 전달할 때 사용한다.
+		
 		
 		model.addAttribute("list", BoardDAO.getInstance().selectBoardList());
 

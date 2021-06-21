@@ -20,7 +20,6 @@ public class BoardDAO {
 	private String sql;
 	
 	
-	// 1. list
 	public List<Board> selectBoardList() {
 		sql = "SELECT NO, NAME, TEL, ADDR, EMAIL,NOTE FROM CONTACT";
 		return template.query(sql, new BeanPropertyRowMapper<Board>(Board.class));
@@ -30,11 +29,11 @@ public class BoardDAO {
 		return template.queryForObject(sql, new BeanPropertyRowMapper<Board>(Board.class), no);
 	}
 	public int insertBoard(final Board board) {
-		// PreparedStatementSetter로 작업해도 됨
+		
 		return template.update(new PreparedStatementCreator() {			
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-				// TODO 매개변수 con으로 ps를 만들어서 반환
+				
 				String sql = "INSERT INTO CONTACT VALUES (BOARD_SEQ.NEXTVAL, ?, ?, ?,?,?)";
 				PreparedStatement ps = con.prepareStatement(sql);
 				ps.setString(1, board.getName());
@@ -51,7 +50,7 @@ public class BoardDAO {
 		return template.update(sql, new PreparedStatementSetter() {
 			@Override
 			public void setValues(PreparedStatement ps) throws SQLException {
-				// TODO 매개변수 ps를 이용해서 ?를 채움
+			
 				ps.setString(1, board.getName());
 				ps.setString(2, board.getTel());
 				ps.setString(3, board.getAddr());
