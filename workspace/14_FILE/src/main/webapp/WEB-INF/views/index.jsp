@@ -3,11 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta  charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
 </head>
 <body>
-	<a href ="selectBoardList.do">이동</a>
-
+	<a href="selectBoardList.do">게시판으로 가기</a>
 </body>
 </html>

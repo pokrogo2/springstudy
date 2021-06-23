@@ -3,12 +3,14 @@ package com.koreait.file.dto;
 import java.sql.Date;
 
 public class Board {
+	
 	private long no;
-	private String writer;
+	private String writer; 
 	private String title;
 	private String content;
 	private String filename;
 	private Date postdate;
+	
 	public long getNo() {
 		return no;
 	}
