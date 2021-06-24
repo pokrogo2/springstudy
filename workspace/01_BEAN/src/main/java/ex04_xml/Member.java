@@ -3,66 +3,53 @@ package ex04_xml;
 import java.util.List;
 
 public class Member {
-	//field ==property
-	
+
+	// field(property)
 	private String name;
 	private double height;
 	private double weight;
-	private BMICaculator bmiCaculator;
+	private BMICalculator bmiCalculator;
 	private List<String> services;
-
-	//constructor 
 	
+	// constructor
 	
-	//method
-	
+	// method
 	public void info() {
-		System.out.println("이름 : " +name);
-		System.out.println("키 : " +height+"cm");
-		System.out.println("몸무게 : " +weight+"kg");
-		bmiCaculator.info(height, weight);
-		System.out.println("등록 : " + services.toString());
+		System.out.println("이름: " + name);
+		System.out.println("키: " + height + "cm");
+		System.out.println("몸무게: " + weight + "kg");
+		bmiCalculator.info(height, weight);
+		System.out.println("등록: " + services.toString());
 	}
-
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	public double getHeight() {
 		return height;
 	}
-
 	public void setHeight(double height) {
 		this.height = height;
 	}
-
 	public double getWeight() {
 		return weight;
 	}
-
 	public void setWeight(double weight) {
 		this.weight = weight;
 	}
-
-	public BMICaculator getBmiCaculator() {
-		return bmiCaculator;
+	public BMICalculator getBmiCalculator() {
+		return bmiCalculator;
 	}
-
-	public void setBmiCaculator(BMICaculator bmiCaculator) {
-		this.bmiCaculator = bmiCaculator;
+	public void setBmiCalculator(BMICalculator bmiCalculator) {
+		this.bmiCalculator = bmiCalculator;
 	}
-
 	public List<String> getServices() {
 		return services;
 	}
-
 	public void setServices(List<String> services) {
 		this.services = services;
 	}
-	
 	
 }

@@ -5,8 +5,9 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
-	<context:annotation-config/>
-	<bean id = "boardDao" class ="ex02_resource.Dao"/>
-	<bean id="selectListCommand" class="ex02_resource.SelectListCommand"/>
+	<context:annotation-config />
+	
+	<bean id="boardDao" class="ex02_resource.Dao" />
+	<bean id="selectListCommand" class="ex02_resource.SelectListCommand" />
 
 </beans>

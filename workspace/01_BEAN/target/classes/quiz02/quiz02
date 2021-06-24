@@ -1,0 +1,24 @@
+Calculator
+	public int add(int a, int b)
+	public int subtract(int a, int b)
+	public int multiply(int a, int b)
+	public int divide(int a, int b)
+
+MultiplicationTable
+	private int startDan;
+	private int endDan;
+	private int startNum;
+	private int endNum;
+	private Calculator calculator;
+
+3x1=3
+3x2=6
+3x3=9
+
+4x1=4
+4x2=8
+4x3=12
+
+5x1=5
+5x2=10
+5x3=15

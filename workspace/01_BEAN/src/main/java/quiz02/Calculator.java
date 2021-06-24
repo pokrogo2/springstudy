@@ -2,6 +2,11 @@ package quiz02;
 
 public class Calculator {
 
+	// field(property)
+	
+	// constructor
+	
+	// method
 	public int add(int a, int b) {
 		return a + b;
 	}
@@ -14,4 +19,5 @@ public class Calculator {
 	public double divide(int a, int b) {
 		return (double)a / b;
 	}
+	
 }

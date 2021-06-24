@@ -2,7 +2,6 @@ package com.koreait.mvc02.controller;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
-import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,16 +23,21 @@ public class MyController {
 	// 2. 메소드명 : a, 아무 역할이 없다.
 	// 3. 매개변수 : Model model, request를 이용하는 객체이다. 보안이 좋다.
 	public String a(Model model) {
+		
 		AbstractApplicationContext ctx = new AnnotationConfigApplicationContext(BeanConfiguration.class);
-		Member m3 = ctx.getBean("member3",Member.class);
-		model.addAttribute("m3",m3);
+		Member m3 = ctx.getBean("member3", Member.class);
+		
+		// 매개변수 Model의 역할
+		// 응답View로 보낼 데이터를 저장한다.
+		model.addAttribute("m3", m3);
+		
 		// return "index";
 		// 1. DispatherServlet(servlet-context.xml)에 정의된 ViewResolver에 의해서 처리된다.
 		//    1) prefix : "/WEB-INF/views/", return 앞에 추가한다.
 		//    2) suffix : ".jsp", return 뒤에 추가한다.
 		// 2. forward로 이동된다.
 		return "index";  // return "/WEB-INF/views/index.jsp";
+		
 	}
-	
 	
 }

@@ -6,13 +6,14 @@ import org.springframework.context.support.GenericXmlApplicationContext;
 public class SpringMainClass {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-AbstractApplicationContext ctx = new GenericXmlApplicationContext("quiz02.xml");
+		
+		AbstractApplicationContext ctx = new GenericXmlApplicationContext("quiz02.xml");
 		
 		MultiplicationTable multiplicationTable = ctx.getBean("gugudan", MultiplicationTable.class);
 		multiplicationTable.info();
 		
 		ctx.close();
+
 	}
 
 }

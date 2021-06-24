@@ -1,8 +1,10 @@
 package com.koreait.mvc03.dto;
 
 public class Member {
+
 	private String id;
 	private String pw;
+	
 	public String getId() {
 		return id;
 	}

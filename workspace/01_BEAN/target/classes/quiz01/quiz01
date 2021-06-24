@@ -1,0 +1,11 @@
+Car
+	private String model;
+	private int price;
+
+Person
+	private String name;
+	private Car car;
+
+이름: alice
+자동차 모델: sonata
+자동차 가격: 3000만원

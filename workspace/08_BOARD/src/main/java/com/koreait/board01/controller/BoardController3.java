@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -29,8 +28,9 @@ public class BoardController3 {
 	// field
 	private static final Logger logger = LoggerFactory.getLogger(BoardController3.class);
 	
-	//beanconfiguration.java이용한 bean
+	// BeanConfiguration.java 이용한 bean 생성
 	private AbstractApplicationContext ctx = new AnnotationConfigApplicationContext(BeanConfiguration.class);
+	
 	// method
 	@GetMapping(value="/")  // @RequestMapping(value="/", method=RequestMethod.GET)
 	public String index() {
@@ -41,8 +41,7 @@ public class BoardController3 {
 	@GetMapping(value="selectBoardList.do")
 	public String selectBoardList(Model model) {
 		logger.info("selectBoardList() 호출");
-		BoardListCommand command = ctx.getBean("boardListCommand",BoardListCommand.class); // 메소드 이름,클래스
-		
+		BoardListCommand command = ctx.getBean("boardListCommand", BoardListCommand.class);
 		command.execute(model);
 		return "board/list";  // board/list.jsp로 이동
 	}
@@ -57,14 +56,9 @@ public class BoardController3 {
 	public String insertBoard(HttpServletRequest request,  // <form> 태그 요소가 파라미터로 전달된다.
 							  Model model) {
 		logger.info("insertBoard() 호출");
-		// 모든 Command에는 model만 전달할 수 있다.
-		// 따라서, Command에 전달할 데이터들은 모두 model에 저장한다.
 		model.addAttribute("request", request);
-		
-		InsertBoardCommand command = ctx.getBean("insertBoardCommand",InsertBoardCommand.class);
+		InsertBoardCommand command = ctx.getBean("insertBoardCommand", InsertBoardCommand.class);
 		command.execute(model);
-		
-		// 삽입 후에는 반드시 redirect
 		return "redirect:selectBoardList.do";  // 삽입 후 목록 보기로 이동 (redirect:매핑)	
 	}
 	
@@ -73,7 +67,7 @@ public class BoardController3 {
 								  Model model) {
 		logger.info("selectBoardByNo() 호출");
 		model.addAttribute("no", no);
-		BoardViewCommand command = ctx.getBean("boardViewCommand",BoardViewCommand.class);
+		BoardViewCommand command = ctx.getBean("boardViewCommand", BoardViewCommand.class);
 		command.execute(model);
 		return "board/view";
 	}
@@ -89,7 +83,7 @@ public class BoardController3 {
 							  Model model) {
 		logger.info("updateBoard() 호출");
 		model.addAttribute("board", board);
-		UpdateBoardCommand command = ctx.getBean("updateBoardCommand",UpdateBoardCommand.class);
+		UpdateBoardCommand command = ctx.getBean("updateBoardCommand", UpdateBoardCommand.class);
 		command.execute(model);
 		return "redirect:selectBoardByNo.do?no=" + board.getNo();
 	}
@@ -99,7 +93,7 @@ public class BoardController3 {
 							  Model model) {
 		logger.info("deleteBoard() 호출");
 		model.addAttribute("no", no);
-		DeleteBoardCommand command = ctx.getBean("deleteBoardCommand",DeleteBoardCommand.class);
+		DeleteBoardCommand command = (DeleteBoardCommand)ctx.getBean("deleteBoardCommand");
 		command.execute(model);
 		return "redirect:selectBoardList.do";
 	}

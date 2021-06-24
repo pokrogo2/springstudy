@@ -9,28 +9,32 @@ import com.koreait.board01.command.DeleteBoardCommand;
 import com.koreait.board01.command.InsertBoardCommand;
 import com.koreait.board01.command.UpdateBoardCommand;
 
-@Configuration 
+@Configuration
 public class BeanConfiguration {
+
 	@Bean
 	public BoardListCommand boardListCommand() {
 		return new BoardListCommand();
-		//id = boardListCommand /class = BoardListCommand인 빈 생성
 	}
+	
 	@Bean
 	public BoardViewCommand boardViewCommand() {
 		return new BoardViewCommand();
 	}
+	
 	@Bean
 	public InsertBoardCommand insertBoardCommand() {
 		return new InsertBoardCommand();
 	}
+	
 	@Bean
 	public UpdateBoardCommand updateBoardCommand() {
 		return new UpdateBoardCommand();
-		
 	}
+	
 	@Bean
 	public DeleteBoardCommand deleteBoardCommand() {
 		return new DeleteBoardCommand();
 	}
+	
 }

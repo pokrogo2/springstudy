@@ -6,13 +6,17 @@ import org.springframework.context.support.AbstractApplicationContext;
 public class SpringMainClass {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
 		AbstractApplicationContext ctx = new AnnotationConfigApplicationContext(AppContext.class);
-		Soldier s1 = ctx.getBean("soldier1",Soldier.class);
-		Soldier s2 = ctx.getBean("soldier2",Soldier.class);
+		
+		Soldier s1 = ctx.getBean("soldier1", Soldier.class);
+		Soldier s2 = ctx.getBean("soldier2", Soldier.class);
+		
 		s1.info();
 		s2.info();
 		
+		ctx.close();
+
 	}
 
 }

@@ -1,17 +1,10 @@
 package quiz01;
 
 public class Person {
+
 	private String name;
 	private Car car;
-	public Person() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public Person(String name, Car car) {
-		super();
-		this.name = name;
-		this.car = car;
-	}
+	
 	public String getName() {
 		return name;
 	}
@@ -26,9 +19,8 @@ public class Person {
 	}
 	
 	public void info() {
-		System.out.println("이름 :" +name);
+		System.out.println("이름: " + name);
 		car.info();
 	}
-	
 	
 }

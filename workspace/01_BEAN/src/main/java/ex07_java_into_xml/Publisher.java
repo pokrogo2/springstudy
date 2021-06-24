@@ -1,14 +1,17 @@
 package ex07_java_into_xml;
 
 public class Publisher {
+
 	private String name;
 	private String location;
+	
 	public Publisher() {}
 	public Publisher(String name, String location) {
 		super();
 		this.name = name;
 		this.location = location;
 	}
+	
 	public String getName() {
 		return name;
 	}
@@ -21,6 +24,5 @@ public class Publisher {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	
 	
 }

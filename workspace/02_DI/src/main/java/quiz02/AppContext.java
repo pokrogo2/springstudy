@@ -5,13 +5,16 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class AppContext {
+
 	@Bean
 	public Speaker speaker() {
-		return new Speaker(10);
+		return new Speaker();
 	}
+	
 	@Bean
 	public TV tv() {
-		return new TV(10,speaker());
+		return new TV();
 	}
+	
 	
 }

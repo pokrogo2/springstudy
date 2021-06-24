@@ -1,7 +1,7 @@
 package ex07_java_into_xml;
 
 public class Book {
-	
+
 	private String title;
 	private int price;
 	private Publisher publisher;
@@ -13,7 +13,13 @@ public class Book {
 		this.price = price;
 		this.publisher = publisher;
 	}
-
+	
+	public void info() {
+		System.out.println("책제목: " + title);
+		System.out.println("가격: " + price);
+		System.out.println("출판사명: " + publisher.getName());
+		System.out.println("출판사위치: " + publisher.getLocation());
+	}
 	public String getTitle() {
 		return title;
 	}
@@ -32,11 +38,5 @@ public class Book {
 	public void setPublisher(Publisher publisher) {
 		this.publisher = publisher;
 	}
-	public void info() {
-		System.out.println("책 제목 : " + title);
-		System.out.println("가격 : " + price);
-		System.out.println("출판사명 : " + publisher.getName());
-		System.out.println("출판사위치 : " + publisher.getLocation());
-		
-	}
+	
 }

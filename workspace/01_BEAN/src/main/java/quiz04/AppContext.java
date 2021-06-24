@@ -5,12 +5,15 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class AppContext {
-	@Bean(name="lecture2")
-	public Lecture l2() {
-		return new Lecture("웹디자인","교수2");
+
+	@Bean
+	public Lecture lecture2() {
+		return new Lecture("공학수학", "김수학");
 	}
-	@Bean(name="student2")
-	public Student s2() {
-		return new Student("학생2",l2());
+	
+	@Bean
+	public Student student2() {
+		return new Student("저학생", lecture2());
 	}
+	
 }

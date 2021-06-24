@@ -3,25 +3,31 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<!-- calculator -->
-	<bean id="calculator" class="ex04_xml.Calculator"/>
+	<!-- Calculator -->
+	<bean id="calculator" class="ex04_xml.Calculator" />
 	
-	<!-- BMICalculator  생성자이용-->
-	<bean id ="bmiCalculator" class="ex04_xml.BMICaculator">
-		<constructor-arg value="20"/>
-		<constructor-arg value="25"/>
-		<constructor-arg value="30"/>
-		<constructor-arg ref="calculator"/>
-		
+	<!-- BMICalculator --><!-- 생성자를 통한 생성 -->
+	<bean id="bmiCalculator" class="ex04_xml.BMICalculator">
+		<constructor-arg value="20" />
+		<constructor-arg value="25" />
+		<constructor-arg value="30" />
+		<constructor-arg ref="calculator" />
 	</bean>
 	
-<!-- Member setter를 이용 -->
-	<bean id ="member" class="ex04_xml.Member">
-		<property name="name" value="james"/>
-		<property name="height" value="175.5"/>
-		<property name="weight" value="75.5"/>
-		
-		<property name="bmiCaculator" ref="bmiCalculator"/>
+	<!-- Member --><!-- setter를 통한 생성 -->
+	<bean id="member" class="ex04_xml.Member">
+		<property name="name">
+			<value>david</value>
+		</property>
+		<property name="height">
+			<value>175.5</value>
+		</property>
+		<property name="weight">
+			<value>75.5</value>
+		</property>
+		<property name="bmiCalculator">
+			<ref bean="bmiCalculator" />
+		</property>
 		<property name="services">
 			<list>
 				<value>개인PT</value>
@@ -30,5 +36,5 @@
 			</list>
 		</property>
 	</bean>
-	
+
 </beans>

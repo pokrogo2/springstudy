@@ -30,6 +30,7 @@ public class DownloadCommand {
 
 		// DB와 서버에 저장된 파일명
 		String filename = request.getParameter("filename");
+		System.out.println(filename);
 		
 		// 파일명 원상 복구 (선택)
 		String extension = filename.substring( filename.lastIndexOf(".") + 1 );
@@ -48,6 +49,7 @@ public class DownloadCommand {
 			// response 다운로드 처리
 			response.setHeader("Content-Type", "applicaion/x-msdownload");
 			response.setHeader("Content-Disposition", "attachment; filename=" + URLEncoder.encode(downloadFilename, "utf-8"));
+			// response.setHeader("Content-Disposition", "attachment; filename=" + downloadFilename);
 			response.setHeader("Content-Length", download.length() + "");
 			
 			// 서버에 저장된 download할 파일을 읽는 스트림

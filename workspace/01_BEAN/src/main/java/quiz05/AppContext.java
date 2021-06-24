@@ -4,21 +4,22 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 
-@ImportResource("quiz05.xml")
-
 @Configuration
+@ImportResource("quiz05.xml")
 public class AppContext {
+
 	@Bean
-	public Person person3() {
-		return new Person("남2","남");
+	public Person husband1() {
+		return new Person("이신랑", "남");
 	}
+	
 	@Bean
-	public Person person4() {
-		return new Person("여2","여");
+	public Person wife1() {
+		return new Person("저신부", "여");
 	}
+	
 	@Bean
-	public HoneyMoon honeymoon2() {
-		return new HoneyMoon("방콕",person3(),person4());
-				
+	public HoneyMoon honeyMoon1() {
+		return new HoneyMoon("파리", husband1(), wife1());
 	}
 }

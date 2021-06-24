@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ComponentScan(basePackages="ex10_component")
-//@ComponentScan(basePackages={"ex10_component", "aa.." , "dd.." })
+// @ComponentScan(basePackages={"ex10_component"})
 public class AppContext {
 
 }

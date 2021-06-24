@@ -21,18 +21,21 @@
 		pageContext.setAttribute("m1", m1);
 		pageContext.setAttribute("m2", m2);
 	%>
-
+	
+	<!-- root-context.xml -->
 	<h1>사용자1</h1>
 	아이디: ${m1.id}<br>
 	전화번호: ${m1.contact.phone}<br>
 	주소: ${m1.contact.address}<br>
-
+	
+	<!-- root-context.xml -->
 	<h1>사용자2</h1>
 	아이디: ${m2.id}<br>
 	전화번호: ${m2.contact.phone}<br>
 	주소: ${m2.contact.address}<br>
-	
-		<h1>사용자3</h1>
+
+	<!-- BeanConfiguration.java -->
+	<h1>사용자3</h1>
 	아이디: ${m3.id}<br>
 	전화번호: ${m3.contact.phone}<br>
 	주소: ${m3.contact.address}<br>

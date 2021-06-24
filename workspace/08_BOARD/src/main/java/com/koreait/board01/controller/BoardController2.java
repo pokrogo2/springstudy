@@ -20,39 +20,63 @@ import com.koreait.board01.command.InsertBoardCommand;
 import com.koreait.board01.command.UpdateBoardCommand;
 import com.koreait.board01.dto.Board;
 
-//@Controller
+// @Controller
 public class BoardController2 {
 
 	// field
 	private static final Logger logger = LoggerFactory.getLogger(BoardController2.class);
-	
-	//root-context.xml에 정의 된 bean생성
+
+	// root-context.xml 정의된 bean 주입
 	/*
-	 	@AutoWired
-	 	private BoardListCommand boardListCmmand;
-	 	
-	 	2.setter형태 메소드
-	 */
+		1. 필드 이용하기 (하나씩 모두 적용)
+		
+		@Autowired
+		private BoardListCommand boardListCommand;
+		@Autowired
+		private BoardViewCommand boardViewCommand;
+		...
+	*/
+	/*
+		2. setter 형태의 메소드 이용하기.
+		private BoardListCommand boardListCommand;
+		private BoardViewCommand boardViewCommand;
+		private InsertBoardCommand insertBoardCommand;
+		private DeleteBoardCommand deleteBoardCommand;
+		private UpdateBoardCommand updateBoardCommand;
+		
+		@Autowired
+		public void setCommand(BoardListCommand boardListCommand,  -- 매개변수로 자동 주입
+							   BoardViewCommand boardViewCommand,
+							   InsertBoardCommand insertBoardCommand,
+							   DeleteBoardCommand deleteBoardCommand,
+							   UpdateBoardCommand updateBoardCommand) {
+			this.boardListCommand = boardListCommand;
+			this.boardViewCommand = boardViewCommand;
+			this.insertBoardCommand = insertBoardCommand;
+			this.deleteBoardCommand = deleteBoardCommand;
+			this.updateBoardCommand = updateBoardCommand;
+		}
+	*/
+	
 	private BoardListCommand boardListCommand;
 	private BoardViewCommand boardViewCommand;
 	private InsertBoardCommand insertBoardCommand;
 	private DeleteBoardCommand deleteBoardCommand;
 	private UpdateBoardCommand updateBoardCommand;
 	
-	//타입보고 bean을 찾아서 넣어줌 >> 필드로
 	@Autowired
 	public void setCommand(BoardListCommand boardListCommand,
-							BoardViewCommand boardViewCommand,
-							InsertBoardCommand insertBoardCommand,
-							DeleteBoardCommand deleteBoardCommand,
-							UpdateBoardCommand updateBoardCommand) {
+						   BoardViewCommand boardViewCommand,
+						   InsertBoardCommand insertBoardCommand,
+						   DeleteBoardCommand deleteBoardCommand,
+						   UpdateBoardCommand updateBoardCommand) {
 		this.boardListCommand = boardListCommand;
 		this.boardViewCommand = boardViewCommand;
 		this.insertBoardCommand = insertBoardCommand;
 		this.deleteBoardCommand = deleteBoardCommand;
 		this.updateBoardCommand = updateBoardCommand;
-		
 	}
+	
 	// method
 	@GetMapping(value="/")  // @RequestMapping(value="/", method=RequestMethod.GET)
 	public String index() {
@@ -63,7 +87,6 @@ public class BoardController2 {
 	@GetMapping(value="selectBoardList.do")
 	public String selectBoardList(Model model) {
 		logger.info("selectBoardList() 호출");
-		boardListCommand = new BoardListCommand();
 		boardListCommand.execute(model);
 		return "board/list";  // board/list.jsp로 이동
 	}
@@ -78,13 +101,8 @@ public class BoardController2 {
 	public String insertBoard(HttpServletRequest request,  // <form> 태그 요소가 파라미터로 전달된다.
 							  Model model) {
 		logger.info("insertBoard() 호출");
-		// 모든 Command에는 model만 전달할 수 있다.
-		// 따라서, Command에 전달할 데이터들은 모두 model에 저장한다.
 		model.addAttribute("request", request);
-		
 		insertBoardCommand.execute(model);
-		
-		// 삽입 후에는 반드시 redirect
 		return "redirect:selectBoardList.do";  // 삽입 후 목록 보기로 이동 (redirect:매핑)	
 	}
 	
@@ -93,7 +111,6 @@ public class BoardController2 {
 								  Model model) {
 		logger.info("selectBoardByNo() 호출");
 		model.addAttribute("no", no);
-	
 		boardViewCommand.execute(model);
 		return "board/view";
 	}
@@ -109,7 +126,6 @@ public class BoardController2 {
 							  Model model) {
 		logger.info("updateBoard() 호출");
 		model.addAttribute("board", board);
-		
 		updateBoardCommand.execute(model);
 		return "redirect:selectBoardByNo.do?no=" + board.getNo();
 	}
@@ -119,7 +135,6 @@ public class BoardController2 {
 							  Model model) {
 		logger.info("deleteBoard() 호출");
 		model.addAttribute("no", no);
-		
 		deleteBoardCommand.execute(model);
 		return "redirect:selectBoardList.do";
 	}

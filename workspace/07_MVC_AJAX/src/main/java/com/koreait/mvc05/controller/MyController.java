@@ -1,8 +1,5 @@
 package com.koreait.mvc05.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,13 +22,13 @@ public class MyController {
 	@RequestMapping(value="v01",
 					method=RequestMethod.GET,
 					produces="text/plain; charset=utf-8")
-	@ResponseBody
+	@ResponseBody  // 이 메서드는 뷰를 반환하지 않고, 값을 반환한다.
 	public String v01(@RequestParam("name") String name,
 					  @RequestParam("age") int age) {
 		return name + ", " + age;
 	}
 	
-
+	// 2. json 반환하기
 	@RequestMapping(value="v02",
 					method=RequestMethod.GET,
 					produces="application/json; charset=utf-8")
@@ -41,27 +38,18 @@ public class MyController {
 		Person p = new Person();
 		p.setName(name);
 		p.setAge(age);
-		//Map<String, Object> map = new HashMap<String, Object>();
-		//map.put("p", p);
 		return p;   // bean을 반환한다. produces="application/json; charset=utf-8"을 통해서 bean은 json으로 변경이 된다. jackson에 의해서!
-					  // return은 ViewResolver에 의해서 jsp로 처리가 되는데 이를 방지하기 위해서 return이 "값"임을 알린다. @ResponseBody 애너테이션에 의해서!
+					// return은 ViewResolver에 의해서 jsp로 처리가 되는데 이를 방지하기 위해서 return이 "값"임을 알린다. @ResponseBody 애너테이션에 의해서!
 	}
-	//3.json 받아서 json 반환하기
+	
+	// 3. json 받아서 json 반환하기
 	@RequestMapping(value="v03",
-					method = RequestMethod.POST,
+					method=RequestMethod.POST,
 					produces="application/json; charset=utf-8")
 	@ResponseBody
-	public Person v03(@RequestBody Person person) { //전달받은 obj는 person에
+	public Person v03(@RequestBody Person person) {
 		System.out.println(person);
 		return person;
-		
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 }
