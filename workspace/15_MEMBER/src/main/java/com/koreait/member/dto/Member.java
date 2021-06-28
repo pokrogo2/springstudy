@@ -47,5 +47,10 @@ public class Member {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
+	@Override
+	public String toString() {
+		return "Member [no=" + no + ", id=" + id + ", pw=" + pw + ", name=" + name + ", email=" + email + ", regdate="
+				+ regdate + "]";
+	}
 	
 }
