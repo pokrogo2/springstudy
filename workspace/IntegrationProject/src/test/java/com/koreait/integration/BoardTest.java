@@ -34,7 +34,7 @@ public class BoardTest {
 		while((line=br.readLine())!=null) {
 			resultMap +=line;
 		}
-		//System.out.println(resultMap);
+		System.out.println(resultMap);
 		
 		//JSON > JSON Object : org.json
 		JSONObject obj = new JSONObject(resultMap);

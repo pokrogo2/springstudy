@@ -1,13 +1,67 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script>
+		$(document).ready(function(){
+			$('#insert_btn').click(function(){
+				location.href = 'insertBoardPage.do';
+			})
+		})
+	</script>
 </head>
 <body>
-<h1>test</h1>
-
+	<h1>게시판 목록</h1>
+	<table border="1">
+		<thead>
+			<tr>
+				<td>게시글번호</td>
+				<td>작성자</td>
+				<td>제목</td>
+				<td>작성일</td>
+				<td>파일명</td>
+			</tr>
+		</thead>
+		<tbody>
+			<c:if test="${empty list}">
+				<tr>
+					<td colspan="5">없음</td>
+				</tr>
+			</c:if>
+			<c:if test="${not empty list}">
+				<c:forEach var="board" items="${list}">
+					<tr>
+						<td>${board.gno}</td>
+						<td>${board.gid}</td>
+						<td><a href="selectBoardByNo.do?no=${board.gno}">${board.gtitle}</a></td>
+						<td>${board.postdate}</td>
+						<td>
+							<c:if test="${not empty board.filename}">
+								<a href="download.do?filename=${board.filename}"><i class="fas fa-paperclip"></i></a>
+							</c:if>
+						</td>
+					</tr>
+				</c:forEach>
+			</c:if>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="5">
+				<c:if test="${loginUser != null and loginUser.status ==1}">
+					<input type="button" value="새글작성하러가기" id="insert_btn">
+					</c:if>
+					<c:if test="${loginUser == null}">
+						로그인필요
+					</c:if>
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+	<a href="index.do">돌아가기</a>
 </body>
 </html>

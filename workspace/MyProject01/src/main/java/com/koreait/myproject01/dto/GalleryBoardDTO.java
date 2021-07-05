@@ -7,6 +7,13 @@ public class GalleryBoardDTO {
 	private String gcontent;
 	private String postdate;
 	private String lastupdate;
+	private String filename;
+	public String getFilename() {
+		return filename;
+	}
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
 	private int ghit;
 	public int getGno() {
 		return gno;

@@ -78,6 +78,6 @@
 		<a href="findIdPage.do">아이디찾기</a>&nbsp;&nbsp;&nbsp;
 		<a href="findPwPage.do">비밀번호찾기</a>
 	</c:if>
-	
+	<a href="index.do">메인</a>
 </body>
 </html>
