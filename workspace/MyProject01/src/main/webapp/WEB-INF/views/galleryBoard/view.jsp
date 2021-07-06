@@ -12,6 +12,7 @@
 		$(function(){
 			fn_update();
 			fn_delete();
+		
 		});
 		function fn_update(){
 			$('#updatepage_btn').click(function(){
@@ -27,6 +28,7 @@
 				}
 			});
 		}
+		
 	</script>
 </head>
 <body>
@@ -54,11 +56,47 @@
 		</tr>
 	</table>
 	<c:if test="${loginUser.memberId == board.gid }">
-	<form id="f">
+	<form id="f" method="post">
+	<input type="hidden"  name ="no" value="${board.gno}">
 	<button id="updatepage_btn">수정하기</button>
 	
 	<button id="delete_btn">삭제하기</button>
 	</form>
 	</c:if>
+	
+	
+	<%-- 댓글 입력창 --%>
+<div class="reply_form">
+	<form action="insertReply.do" >
+		<input type="text" name="gboard_no" value="${board.gno}"> 
+		<textarea name="content" placeholder="로그인을 하면 작성할 수 있습니다."></textarea>
+		<c:if test="${loginUser != null and loginUser.status ==1}">
+			<button>작성하기</button>
+		</c:if>
+	</form>
+</div>
+
+	<button id="back_btn" onclick="location.href='gBoard.do'">목록</button>
+
+<div class="reply_list">
+
+	<table>
+		<tbody>
+			<c:forEach var="replyDTO" items="${replyList}">
+				<tr>
+					<td>${replyDTO.gid}</td>
+					<td>${replyDTO.gcontent}</td>
+					<td>${replyDTO.postdate}</td>
+					<td>
+						<c:if test="${loginUser.memberId == replyDTO.gid}">   
+							<a href="deleteReply.do?replyId=${replyDTO.gid}&gno=${replyDTO.gno}">삭제</a>
+						</c:if>
+					</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+</div>
+
 </body>
 </html>

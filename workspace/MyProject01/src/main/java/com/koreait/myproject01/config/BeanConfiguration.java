@@ -22,9 +22,12 @@ import com.koreait.myproject01.command.LoginCommand;
 import com.koreait.myproject01.command.LogoutCommand;
 import com.koreait.myproject01.gcommand.DeleteBoardCommand;
 import com.koreait.myproject01.gcommand.InsertBoardCommand;
+import com.koreait.myproject01.gcommand.InsertReplyCommand;
 import com.koreait.myproject01.gcommand.SelectBoardListCommand;
 import com.koreait.myproject01.gcommand.SelectBoardViewCommand;
+
 import com.koreait.myproject01.gcommand.UpdateBoardCommand;
+import com.koreait.myproject01.gcommand.UpdateBoardPage;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 @Configuration
@@ -115,4 +118,13 @@ public class BeanConfiguration {
 	public UpdateBoardCommand updateBoardCommand() {
 		return new UpdateBoardCommand();
 	}
+	@Bean
+	public InsertReplyCommand insertReplyCommand() {
+		return new InsertReplyCommand();
+	}
+	@Bean
+	public UpdateBoardPage updateBoardPage() {
+		return new UpdateBoardPage();
+	}
+	
 }

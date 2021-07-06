@@ -31,4 +31,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  FROM GBOARD
 		 WHERE GNO = #{param1}
 	</select>
+	<insert id ="insertReply">
+		INSERT INTO GREPLY
+		VALUES (GREPLY_SEQ.NEXTVAL,#{gid},#{gboard_no},#{gcontent},SYSDATE,'127.0.0.1')
+	
+	</insert>
+	<select id="selectReplyList" resultType="com.koreait.myproject01.dto.GalleryBoardReplyDTO">
+		SELECT * FROM GREPLY WHERE GBOARD_NO=#{param1}
+		ORDER BY GNO DESC
+	
+	
+	</select>
+	<update id="updateBoard">
+		UPDATE GBOARD
+		SET GTITLE= #{param1},
+		GCONTENT = #{param2},
+		FILENAME = #{param3}
+		WHERE GNO=#{param4}
+	
+	
+	</update>
+	<delete id ="deleteBoard">
+		DELETE
+		FROM GBOARD
+		WHERE GNO =#{param1}
+	
+	
+	</delete>
 </mapper>

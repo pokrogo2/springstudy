@@ -24,6 +24,7 @@ public class SelectBoardViewCommand implements BoardCommand {
 		GBoardDAO boardDAO = sqlSession.getMapper(GBoardDAO.class);
 		GalleryBoardDTO board = boardDAO.selectBoardByNo(no);
 		model.addAttribute("board", board);
+		model.addAttribute("replyList", boardDAO.selectReplyList(no));
 		try { 
 			model.addAttribute("filename", URLDecoder.decode(board.getFilename(), "utf-8")); 
 		} catch(Exception e) { }

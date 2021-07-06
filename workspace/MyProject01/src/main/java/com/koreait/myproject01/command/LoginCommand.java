@@ -30,14 +30,7 @@ public class LoginCommand implements MemberCommand {
 		MemberDTO loginUser = memberDAO.login(member);
 		
 		if (loginUser != null) {
-			System.out.println(loginUser.getMemberId());
-			System.out.println(loginUser.getMemberPw());
-			System.out.println(loginUser.getMemberAddress());
-			System.out.println(loginUser.getMemberTel());
-			System.out.println(loginUser.getMemberName());
-			System.out.println(loginUser.getMemberNo());
-			System.out.println(loginUser.getMemberEmail());
-			System.out.println(loginUser.getStatus());
+
 			request.getSession().setAttribute("loginUser", loginUser);
 		}
 		

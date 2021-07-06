@@ -12,9 +12,11 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.koreait.myproject01.gcommand.DeleteBoardCommand;
 import com.koreait.myproject01.gcommand.InsertBoardCommand;
+import com.koreait.myproject01.gcommand.InsertReplyCommand;
 import com.koreait.myproject01.gcommand.SelectBoardListCommand;
 import com.koreait.myproject01.gcommand.SelectBoardViewCommand;
 import com.koreait.myproject01.gcommand.UpdateBoardCommand;
+import com.koreait.myproject01.gcommand.UpdateBoardPage;
 
 @Controller
 public class GBoardController {
@@ -24,13 +26,15 @@ public class GBoardController {
 	private InsertBoardCommand insertBoardCommand;
 	private UpdateBoardCommand updateBoardCommand;
 	private DeleteBoardCommand deleteBoardCommand;
-	
-
+	private InsertReplyCommand insertReplyCommand;
+	private UpdateBoardPage updateBoardPage;
 
 	
 	public GBoardController(SqlSession sqlSession, SelectBoardListCommand selectBoardListCommand,
 			SelectBoardViewCommand selectBoardViewCommand, InsertBoardCommand insertBoardCommand,
-			UpdateBoardCommand updateBoardCommand, DeleteBoardCommand deleteBoardCommand) {
+			UpdateBoardCommand updateBoardCommand, DeleteBoardCommand deleteBoardCommand
+			,InsertReplyCommand insertReplyCommand,
+			UpdateBoardPage updateBoardPage) {
 		super();
 		this.sqlSession = sqlSession;
 		this.selectBoardListCommand = selectBoardListCommand;
@@ -38,6 +42,8 @@ public class GBoardController {
 		this.insertBoardCommand = insertBoardCommand;
 		this.updateBoardCommand = updateBoardCommand;
 		this.deleteBoardCommand = deleteBoardCommand;
+		this.insertReplyCommand = insertReplyCommand;
+		this.updateBoardPage =updateBoardPage;
 	}
 	@GetMapping(value="gBoard.do")
 	public String gBoard(Model model) {
@@ -69,6 +75,7 @@ public class GBoardController {
 								  Model model) {
 		model.addAttribute("request", request);
 		selectBoardViewCommand.execute(sqlSession, model);
+
 		return "galleryBoard/view";
 	}
 	
@@ -77,22 +84,30 @@ public class GBoardController {
 							  Model model) {
 		model.addAttribute("multipartRequest", multipartRequest);
 		updateBoardCommand.execute(sqlSession, model);
-		return "redirect:selectBoardByNo.do?no=" + multipartRequest.getParameter("no");
-	}
-	@GetMapping(value="updatePage.do")
-	public String updatePage() {
-		return "galleryBoard/update";
+		return "redirect:selectBoardList.do";
 	}
 	@PostMapping(value="deleteBoard.do")
-	public String deleteBoard(MultipartHttpServletRequest multipartRequest,
+	public String deleteBoard(HttpServletRequest request,
 							  Model model) {
-		model.addAttribute("multipartRequest", multipartRequest);
+		model.addAttribute("request", request);
 		deleteBoardCommand.execute(sqlSession, model);
 		return "redirect:selectBoardList.do";
 	}
 	
-	
-	
+	@GetMapping(value="insertReply.do")
+	public String inertReply(HttpServletRequest request,Model model) {
+		model.addAttribute("request",request);
+		insertReplyCommand.execute(sqlSession,model);
+		return "redirect:selectBoardList.do";
+	}
+	@GetMapping(value="updatePage.do")
+	public String updateBoardPage(HttpServletRequest request,
+								  Model model) {
+		model.addAttribute("request", request);
+		updateBoardPage.execute(sqlSession, model);
+
+		return "galleryBoard/update";
+	}
 	
 	
 }
