@@ -20,7 +20,16 @@ import com.koreait.myproject01.command.JoinCommand;
 import com.koreait.myproject01.command.LeaveCommand;
 import com.koreait.myproject01.command.LoginCommand;
 import com.koreait.myproject01.command.LogoutCommand;
+import com.koreait.myproject01.fcommand.DeleteFBoardCommand;
+import com.koreait.myproject01.fcommand.DeleteFReplyCommand;
+import com.koreait.myproject01.fcommand.InsertFBoardCommand;
+import com.koreait.myproject01.fcommand.InsertFReplyCommand;
+import com.koreait.myproject01.fcommand.SelectFBoardListCommand;
+import com.koreait.myproject01.fcommand.SelectFBoardViewCommand;
+import com.koreait.myproject01.fcommand.UpdateFBoardCommand;
+import com.koreait.myproject01.fcommand.UpdateFBoardPage;
 import com.koreait.myproject01.gcommand.DeleteBoardCommand;
+import com.koreait.myproject01.gcommand.DeleteReplyCommand;
 import com.koreait.myproject01.gcommand.InsertBoardCommand;
 import com.koreait.myproject01.gcommand.InsertReplyCommand;
 import com.koreait.myproject01.gcommand.SelectBoardListCommand;
@@ -126,5 +135,40 @@ public class BeanConfiguration {
 	public UpdateBoardPage updateBoardPage() {
 		return new UpdateBoardPage();
 	}
-	
+	@Bean
+	public DeleteReplyCommand deleteReplyCommand() {
+		return new DeleteReplyCommand();
+	}
+	@Bean
+	public InsertFBoardCommand insertFBoardCommand() {
+		return new InsertFBoardCommand();
+	}
+	@Bean
+	public SelectFBoardListCommand selectFBoardListCommand() {
+		return new SelectFBoardListCommand();
+	}
+	@Bean
+	public SelectFBoardViewCommand selectFBoardViewCommand() {
+		return new SelectFBoardViewCommand();
+	}
+	@Bean
+	public DeleteFBoardCommand deleteFBoardCommand() {
+		return new DeleteFBoardCommand();
+	}
+	@Bean
+	public UpdateFBoardCommand updateFBoardCommand() {
+		return new UpdateFBoardCommand();
+	}
+	@Bean
+	public InsertFReplyCommand insertFReplyCommand() {
+		return new InsertFReplyCommand();
+	}
+	@Bean
+	public UpdateFBoardPage updateFBoardPage() {
+		return new UpdateFBoardPage();
+	}
+	@Bean
+	public DeleteFReplyCommand deleteFReplyCommand() {
+		return new DeleteFReplyCommand();
+	}
 }

@@ -12,7 +12,7 @@
 		$(function(){
 			fn_update();
 			fn_delete();
-		
+			fn_delete2();
 		});
 		function fn_update(){
 			$('#updatepage_btn').click(function(){
@@ -25,6 +25,14 @@
 				if (confirm('삭제할까요?')) {
 					$('#f').attr('action', 'deleteBoard.do');
 					$('#f').submit();
+				}
+			});
+		}
+		function fn_delete2(){
+			$('#delete2_btn').click(function(){
+				if (confirm('삭제할까요2?')) {
+					$('#f1').attr('action', 'deleteReply.do');
+					$('#f1').submit();
 				}
 			});
 		}
@@ -68,7 +76,7 @@
 	<%-- 댓글 입력창 --%>
 <div class="reply_form">
 	<form action="insertReply.do" >
-		<input type="text" name="gboard_no" value="${board.gno}"> 
+		<input type="hidden" name="gboard_no" value="${board.gno}"> 
 		<textarea name="content" placeholder="로그인을 하면 작성할 수 있습니다."></textarea>
 		<c:if test="${loginUser != null and loginUser.status ==1}">
 			<button>작성하기</button>
@@ -89,7 +97,12 @@
 					<td>${replyDTO.postdate}</td>
 					<td>
 						<c:if test="${loginUser.memberId == replyDTO.gid}">   
-							<a href="deleteReply.do?replyId=${replyDTO.gid}&gno=${replyDTO.gno}">삭제</a>
+						<form id="f1">
+						
+								<input type="hidden" name="gno" value="${replyDTO.gno}">
+								<button id="delete2_btn">삭제하기</button>
+						</form>
+						
 						</c:if>
 					</td>
 				</tr>

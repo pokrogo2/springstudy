@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.koreait.myproject01.dto.GalleryBoardDTO;
 import com.koreait.myproject01.dto.GalleryBoardReplyDTO;
+import com.koreait.myproject01.dto.PageDTO;
 
 public interface GBoardDAO {
 	public List<GalleryBoardDTO> selectBoardList();
@@ -12,6 +13,10 @@ public interface GBoardDAO {
 	public GalleryBoardDTO selectBoardByNo(int no);
 	public int updateBoard(String id, String content, String filename, int no);
 	public int deleteBoard(int no);
+	public int deleteReply(int no);
 	public int insertReply(GalleryBoardReplyDTO dto);
 	public List<GalleryBoardReplyDTO> selectReplyList(int no);
+	public int getTotalRecord();
+	
+	public List<GalleryBoardDTO> searchAll(PageDTO pageDTO);
 }

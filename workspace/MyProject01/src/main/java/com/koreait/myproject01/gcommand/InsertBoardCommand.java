@@ -40,7 +40,7 @@ List<MultipartFile> files = multipartRequest.getFiles("files");
 		
 		GBoardDAO boardDAO = sqlSession.getMapper(GBoardDAO.class);
 		
-		/*for (MultipartFile file : files) {
+		for (MultipartFile file : files) {
 			
 			if (file != null && !file.isEmpty()) {
 
@@ -81,12 +81,12 @@ List<MultipartFile> files = multipartRequest.getFiles("files");
 				
 			} else {
 				
+				boardDAO.insertBoard(id, title, content, "");  // 첨부가 없는 경우
 				// DB에 데이터 저장
 			}
 			
-		}*/  // for
+		}  // for
 		
-		boardDAO.insertBoard(id, title, content, "");  // 첨부가 없는 경우
 		System.out.println(id+title+content);
 	}
 

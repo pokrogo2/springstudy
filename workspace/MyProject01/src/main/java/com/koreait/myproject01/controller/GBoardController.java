@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.koreait.myproject01.gcommand.DeleteBoardCommand;
+import com.koreait.myproject01.gcommand.DeleteReplyCommand;
 import com.koreait.myproject01.gcommand.InsertBoardCommand;
 import com.koreait.myproject01.gcommand.InsertReplyCommand;
 import com.koreait.myproject01.gcommand.SelectBoardListCommand;
@@ -28,13 +29,15 @@ public class GBoardController {
 	private DeleteBoardCommand deleteBoardCommand;
 	private InsertReplyCommand insertReplyCommand;
 	private UpdateBoardPage updateBoardPage;
+	private DeleteReplyCommand deleteReplyCommand;
 
 	
 	public GBoardController(SqlSession sqlSession, SelectBoardListCommand selectBoardListCommand,
 			SelectBoardViewCommand selectBoardViewCommand, InsertBoardCommand insertBoardCommand,
 			UpdateBoardCommand updateBoardCommand, DeleteBoardCommand deleteBoardCommand
 			,InsertReplyCommand insertReplyCommand,
-			UpdateBoardPage updateBoardPage) {
+			UpdateBoardPage updateBoardPage,
+			DeleteReplyCommand deleteReplyCommand) {
 		super();
 		this.sqlSession = sqlSession;
 		this.selectBoardListCommand = selectBoardListCommand;
@@ -44,15 +47,18 @@ public class GBoardController {
 		this.deleteBoardCommand = deleteBoardCommand;
 		this.insertReplyCommand = insertReplyCommand;
 		this.updateBoardPage =updateBoardPage;
+		this.deleteReplyCommand = deleteReplyCommand;
 	}
 	@GetMapping(value="gBoard.do")
-	public String gBoard(Model model) {
+	public String gBoard(HttpServletRequest request,Model model) {
+		model.addAttribute("request",request);
 		selectBoardListCommand.execute(sqlSession, model);
 		return "galleryBoard/listPage";
 	}
 	
 	@GetMapping(value="selectBoardList.do")
-	public String selectBoardList(Model model) {
+	public String selectBoardList(HttpServletRequest request,Model model) {
+		model.addAttribute("request",request);
 		selectBoardListCommand.execute(sqlSession, model);
 		return "galleryBoard/listPage";
 	}
@@ -108,6 +114,12 @@ public class GBoardController {
 
 		return "galleryBoard/update";
 	}
-	
+	@GetMapping(value="deleteReply.do")
+	public String deleteReply(HttpServletRequest request,
+							  Model model) {
+		model.addAttribute("request", request);
+		deleteReplyCommand.execute(sqlSession, model);
+		return "redirect:selectBoardList.do";
+	}
 	
 }

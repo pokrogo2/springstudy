@@ -20,4 +20,5 @@
 	
 	<a href="loginPage.do">로그인</a>
 	<a href="gBoard.do">갤러리 게시판</a>
+	<a href="fBoard.do">자유 게시판</a>
 </html>

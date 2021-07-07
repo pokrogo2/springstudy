@@ -14,8 +14,8 @@
 		  method="post"
 		  enctype="multipart/form-data">
 	
-		작성자<br>
-		<input type="text" name="id"><br><br>
+		작성자 ${loginUser.memberId }<br><br><br>
+		<input type="hidden" value="${loginUser.memberId }" name="id">
 		
 		제목<br>
 		<input type="text" name="title"><br><br>

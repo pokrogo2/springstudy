@@ -12,4 +12,5 @@ public interface MemberDAO {
 	public int leave(int no);
 	public MemberDTO findId(String email);
 	public int changePw(MemberDTO member);
+	
 }

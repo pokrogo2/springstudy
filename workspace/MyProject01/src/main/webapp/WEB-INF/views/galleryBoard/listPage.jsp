@@ -60,6 +60,11 @@
 					</c:if>
 				</td>
 			</tr>
+			<tr>
+			<td>
+				${paging}
+				</td>
+			</tr>
 		</tfoot>
 	</table>
 	<a href="index.do">돌아가기</a>

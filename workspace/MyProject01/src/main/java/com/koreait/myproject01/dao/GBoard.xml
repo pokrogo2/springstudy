@@ -16,7 +16,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 -->
 
 <mapper namespace="com.koreait.myproject01.dao.GBoardDAO">
-
+	<select id="getTotalRecord" resultType="int">
+		SELECT COUNT(GNO)
+		FROM GBOARD
+	</select>
+	<select id="searchAll" resultType="com.koreait.myproject01.dto.GalleryBoardDTO">
+		SELECT B.*
+		  FROM (SELECT ROWNUM AS RN, A.*
+		  		  FROM (SELECT GNO,GID,GTITLE,GCONTENT,FILENAME,GHIT,POSTDATE,LASTUPDATE
+		  		  		  FROM GBOARD
+		  		  		 ORDER BY GNO DESC) A) B
+		 WHERE B.RN BETWEEN #{beginRecord} AND #{endRecord}
+	</select>
 	<select id="selectBoardList" resultType="com.koreait.myproject01.dto.GalleryBoardDTO">
 		SELECT GNO, GID, GTITLE, GCONTENT, FILENAME,GHIT,POSTDATE,LASTUPDATE
 		  FROM GBOARD
@@ -54,6 +65,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id ="deleteBoard">
 		DELETE
 		FROM GBOARD
+		WHERE GNO =#{param1}
+	
+	
+	</delete>
+	<delete id ="deleteReply">
+		DELETE
+		FROM GREPLY
 		WHERE GNO =#{param1}
 	
 	

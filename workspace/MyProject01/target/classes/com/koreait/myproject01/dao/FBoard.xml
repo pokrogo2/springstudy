@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!-- 
+	참고. JSP에서 처리한 방법
+	<mapper namespace="com.koreait.board03.dao.board">  mapper 자신
+
+	</mapper>
+-->
+
+<!--
+	mapper를 BoardDAO와 직접 연결한다.
+	: mapper namespace에 BoardDAO를 작성한다.
+-->
+
+<mapper namespace="com.koreait.myproject01.dao.FBoardDAO">
+<select id="getTotalRecord" resultType="int">
+		SELECT COUNT(FNO)
+		FROM FBOARD
+	</select>
+	<select id="searchAll" resultType="com.koreait.myproject01.dto.FreeBoardDTO">
+		SELECT B.*
+		  FROM (SELECT ROWNUM AS RN, A.*
+		  		  FROM (SELECT FNO,FID,FCONTENT,POSTDATE
+		  		  		  FROM FBOARD
+		  		  		 ORDER BY FNO DESC) A) B
+		 WHERE B.RN BETWEEN #{beginRecord} AND #{endRecord}
+	</select>
+	<select id="selectFBoardList" resultType="com.koreait.myproject01.dto.FreeBoardDTO">
+		SELECT FNO, FID, FCONTENT, POSTDATE
+		  FROM FBOARD
+		 ORDER BY FNO DESC
+	</select>
+	<insert id="insertFBoard">
+		INSERT INTO FBOARD
+		VALUES (FBOARD_SEQ.NEXTVAL, #{param1}, #{param2}, SYSDATE,'127.0.0.1',1)
+	</insert>
+	<select id="selectFBoardByNo" resultType="com.koreait.myproject01.dto.FreeBoardDTO">
+		SELECT FNO, FID, FCONTENT, POSTDATE
+		  FROM FBOARD
+		 WHERE FNO = #{param1}
+	</select>
+	<insert id ="insertFReply">
+		INSERT INTO FREPLY
+		VALUES (FREPLY_SEQ.NEXTVAL,#{fid},#{fboard_no},#{fcontent},SYSDATE,'127.0.0.1')
+	
+	</insert>
+	<select id="selectFReplyList" resultType="com.koreait.myproject01.dto.FreeBoardDTO">
+		SELECT * FROM FREPLY WHERE FBOARD_NO=#{param1}
+		ORDER BY FNO DESC
+	
+	
+	</select>
+	<update id="updateFBoard">
+		UPDATE FBOARD
+		FCONTENT = #{param1},
+		
+		WHERE FNO=#{param2}
+	
+	
+	</update>
+	<delete id ="deleteFBoard">
+		DELETE
+		FROM FBOARD
+		WHERE FNO =#{param1}
+	
+	
+	</delete>
+	<delete id ="deleteFReply">
+		DELETE
+		FROM FREPLY
+		WHERE FNO =#{param1}
+	
+	
+	</delete>
+</mapper>
